@@ -18,7 +18,12 @@ app.get('/', function(req, res) {
 app.get('/api/getinfo/:id', function(req, res) {
   var id = req.params.id;
   console.log("id = " + id);
-  res.json({id:id});
+  request('http://graph.facebook.com/' + id, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var data = JSON.parse(body);
+      res.json({id: data.name});
+    }
+  });
 });
 
 http.createServer(app).listen(app.get('port'), function(){

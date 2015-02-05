@@ -8,7 +8,11 @@
   <body>
     <div ng-controller="CMUController">
       <h2>Hello {{cmuText}}</h2>
-      <p>{{text1}}
+      <form>
+        <input type="text" ng-model="fbid" ng-change="changedText()"/>
+      </form>
+      <p>{{text1}}</p>
+      <img ng-src="http://graph.facebook.com/{{fbid}}/picture"/>
     </div>
   </body>
 </html>
